@@ -114,34 +114,25 @@ def find_all_ORFs_oneframe(dna):
     #Determine how many 'ATG' are in a multiple of three
     index = 0
     i = 0
+    start = []
+    res = []
     while i < len(dna):
         codon = dna[index:index+3]
         index += 3
         if codon == 'ATG':
             print 'Found a start'
-            return dna[0:dna.find()]
+            start.append(index-3)
         else: 
             i += 1
+    print start
+    for x in range(len(start)):
+        if x < len(start)-1:
+            res.append(dna[start[x]:start[x+1]])
+        else:
+            res.append(dna[start[x]:])
     return dna
 
-    # codons = len(dna)/3 #How many codons are in the strand
-    # ATG_index = []#Initialize lists
-    # ORFS = []
-    # for i in range(codons): 
-    #     c_ind = i #codon index
-    #     begin = c_ind*3
-    #     end = (c_ind+1)*3
-    #     if dna[begin:end] == 'ATG':
-    #         #print begin, end
-    #         ATG_index.append(begin)
-    #     else:
-    #         pass
-    # for i in range(len(ATG_index)):
-    #     if i == (len(ATG_index)-1): 
-    #         ORFS.append(dna[ATG_index[i]:])
-    #     else: 
-    #         ORFS.append(dna[ATG_index[i]:ATG_index[i+1]])
-    # return ORFS
+find_all_ORFs_oneframe("ATGCATGAATGTAGATAGATGTGCCC")
 
 def find_all_ORFs(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence in all 3
