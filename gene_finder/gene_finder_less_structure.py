@@ -2,10 +2,9 @@
 """
 Created on Sun Feb  2 11:24:42 2014
 
-@author: YOUR NAME HERE
+@author: Kelly Brennan
 
 """
-
 # you may find it useful to import these variables (although you are not required to use them)
 from amino_acids_less_structure import aa, codons
 import random

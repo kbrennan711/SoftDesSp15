@@ -2,7 +2,7 @@
 """
 Created on Sun Feb  2 11:24:42 2014
 
-@author: YOUR NAME HERE
+@author: Kelly Brennan
 
 """
 
@@ -28,9 +28,23 @@ def get_complement(nucleotide):
     'T'
     >>> get_complement('C')
     'G'
+    >>> get_complement('a') #Test when input is unexpected
+    'X'
+    >>> get_complement('T')
+    'A'
+    >>> get_complement('G')
+    'C'
     """
-    # TODO: implement this
-    pass
+    if nucleotide == "A":
+        return "T"
+    if nucleotide == "T":
+        return "A"
+    if nucleotide == "G":
+        return "C"
+    if nucleotide == "C":
+        return "G"
+    else:
+        return "X" 
 
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
@@ -42,9 +56,14 @@ def get_reverse_complement(dna):
     'AAAGCGGGCAT'
     >>> get_reverse_complement("CCGCGTTCA")
     'TGAACGCGG'
+    This test is sufficient for testing this function. 
     """
-    # TODO: implement this
-    pass
+    i = len(dna)-1
+    rev_comp = ""
+    while i >= 0:
+        rev_comp += get_complement(dna[i])
+        i -= 1 
+    return rev_comp
 
 def rest_of_ORF(dna):
     """ Takes a DNA sequence that is assumed to begin with a start codon and returns
@@ -57,9 +76,21 @@ def rest_of_ORF(dna):
     'ATG'
     >>> rest_of_ORF("ATGAGATAGG")
     'ATGAGA'
+    #Test a longer strand without stop codon that is not a multiple of 3
+    >>> rest_of_ORG("ATGAGAGAGAT")
+    'ATGAGAGAGAT'
     """
-    # TODO: implement this
-    pass
+    index = 0
+    i = 0
+    while i < len(dna): #Can divide by 3?
+        codon = dna[index:index+3]
+        index += 3
+        if codon in ['TAG', 'TAA', 'TGA']:
+            #print 'Found a stop'
+            return dna[0:index-3]
+        else: 
+            i += 1
+    return dna
 
 def find_all_ORFs_oneframe(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence and returns
@@ -72,9 +103,45 @@ def find_all_ORFs_oneframe(dna):
         returns: a list of non-nested ORFs
     >>> find_all_ORFs_oneframe("ATGCATGAATGTAGATAGATGTGCCC")
     ['ATGCATGAATGTAGA', 'ATGTGCCC']
+    >>> find_all_ORFs_oneframe('AATGTAGATAGATGTGCCC')
+    []
+    >>> find_all_ORFs_oneframe('AGTATGTAGATAGAAATGTGCCC')
+    'ATGTAGATAGAA', 'ATGTGCCC']
+    The second test tests when the start codon is not present.
+    Third test shows function works when ATG is not first codon
+
     """
-    # TODO: implement this
-    pass
+    #Determine how many 'ATG' are in a multiple of three
+    index = 0
+    i = 0
+    while i < len(dna):
+        codon = dna[index:index+3]
+        index += 3
+        if codon == 'ATG':
+            print 'Found a start'
+            return dna[0:dna.find()]
+        else: 
+            i += 1
+    return dna
+
+    # codons = len(dna)/3 #How many codons are in the strand
+    # ATG_index = []#Initialize lists
+    # ORFS = []
+    # for i in range(codons): 
+    #     c_ind = i #codon index
+    #     begin = c_ind*3
+    #     end = (c_ind+1)*3
+    #     if dna[begin:end] == 'ATG':
+    #         #print begin, end
+    #         ATG_index.append(begin)
+    #     else:
+    #         pass
+    # for i in range(len(ATG_index)):
+    #     if i == (len(ATG_index)-1): 
+    #         ORFS.append(dna[ATG_index[i]:])
+    #     else: 
+    #         ORFS.append(dna[ATG_index[i]:ATG_index[i+1]])
+    # return ORFS
 
 def find_all_ORFs(dna):
     """ Finds all non-nested open reading frames in the given DNA sequence in all 3
@@ -87,73 +154,86 @@ def find_all_ORFs(dna):
 
     >>> find_all_ORFs("ATGCATGAATGTAG")
     ['ATGCATGAATGTAG', 'ATGAATGTAG', 'ATG']
+    >>> find_all_ORFs("GAGAGAGAGAG") #String that contains no ATG
+    []
     """
-    # TODO: implement this
-    pass
 
-def find_all_ORFs_both_strands(dna):
-    """ Finds all non-nested open reading frames in the given DNA sequence on both
-        strands.
+    if 'ATG' in dna:
+        print dna.count('ATG')
+        index =[]
+        for i in range(dna.count('ATG')):
+            frame = dna[i:]
+            index.append(frame.find('ATG')+i)
+            print frame
+        print index
+    else:
+        print 'no'
+
+#find_all_ORFs("ATGCATGAATGTAG")
+
+# def find_all_ORFs_both_strands(dna):
+#     """ Finds all non-nested open reading frames in the given DNA sequence on both
+#         strands.
         
-        dna: a DNA sequence
-        returns: a list of non-nested ORFs
-    >>> find_all_ORFs_both_strands("ATGCGAATGTAGCATCAAA")
-    ['ATGCGAATG', 'ATGCTACATTCGCAT']
-    """
-    # TODO: implement this
-    pass
+#         dna: a DNA sequence
+#         returns: a list of non-nested ORFs
+#     >>> find_all_ORFs_both_strands("ATGCGAATGTAGCATCAAA")
+#     ['ATGCGAATG', 'ATGCTACATTCGCAT']
+#     """
+#     # TODO: implement this
+#     pass
 
 
-def longest_ORF(dna):
-    """ Finds the longest ORF on both strands of the specified DNA and returns it
-        as a string
-    >>> longest_ORF("ATGCGAATGTAGCATCAAA")
-    'ATGCTACATTCGCAT'
-    """
-    # TODO: implement this
-    pass
+# def longest_ORF(dna):
+#     """ Finds the longest ORF on both strands of the specified DNA and returns it
+#         as a string
+#     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
+#     'ATGCTACATTCGCAT'
+#     """
+#     # TODO: implement this
+#     pass
 
 
-def longest_ORF_noncoding(dna, num_trials):
-    """ Computes the maximum length of the longest ORF over num_trials shuffles
-        of the specfied DNA sequence
+# def longest_ORF_noncoding(dna, num_trials):
+#     """ Computes the maximum length of the longest ORF over num_trials shuffles
+#         of the specfied DNA sequence
         
-        dna: a DNA sequence
-        num_trials: the number of random shuffles
-        returns: the maximum length longest ORF """
-    # TODO: implement this
-    pass
+#         dna: a DNA sequence
+#         num_trials: the number of random shuffles
+#         returns: the maximum length longest ORF """
+#     # TODO: implement this
+#     pass
 
-def coding_strand_to_AA(dna):
-    """ Computes the Protein encoded by a sequence of DNA.  This function
-        does not check for start and stop codons (it assumes that the input
-        DNA sequence represents an protein coding region).
+# def coding_strand_to_AA(dna):
+#     """ Computes the Protein encoded by a sequence of DNA.  This function
+#         does not check for start and stop codons (it assumes that the input
+#         DNA sequence represents an protein coding region).
         
-        dna: a DNA sequence represented as a string
-        returns: a string containing the sequence of amino acids encoded by the
-                 the input DNA fragment
+#         dna: a DNA sequence represented as a string
+#         returns: a string containing the sequence of amino acids encoded by the
+#                  the input DNA fragment
 
-        >>> coding_strand_to_AA("ATGCGA")
-        'MR'
-        >>> coding_strand_to_AA("ATGCCCGCTTT")
-        'MPA'
-    """
-    # TODO: implement this
-    pass
+#         >>> coding_strand_to_AA("ATGCGA")
+#         'MR'
+#         >>> coding_strand_to_AA("ATGCCCGCTTT")
+#         'MPA'
+#     """
+#     # TODO: implement this
+#     pass
 
-def gene_finder(dna, threshold):
-    """ Returns the amino acid sequences coded by all genes that have an ORF
-        larger than the specified threshold.
+# def gene_finder(dna, threshold):
+#     """ Returns the amino acid sequences coded by all genes that have an ORF
+#         larger than the specified threshold.
         
-        dna: a DNA sequence
-        threshold: the minimum length of the ORF for it to be considered a valid
-                   gene.
-        returns: a list of all amino acid sequences whose ORFs meet the minimum
-                 length specified.
-    """
-    # TODO: implement this
-    pass
+#         dna: a DNA sequence
+#         threshold: the minimum length of the ORF for it to be considered a valid
+#                    gene.
+#         returns: a list of all amino acid sequences whose ORFs meet the minimum
+#                  length specified.
+#     """
+#     # TODO: implement this
+#     pass
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+# if __name__ == "__main__": #Program only runs if it is imported into the command line
+#     import doctest
+#     doctest.testmod()
