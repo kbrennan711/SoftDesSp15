@@ -200,6 +200,7 @@ def find_all_ORFs(dna):
 #         does not check for start and stop codons (it assumes that the input
 #         DNA sequence represents an protein coding region).
         
+<<<<<<< HEAD
 #         dna: a DNA sequence represented as a string
 #         returns: a string containing the sequence of amino acids encoded by the
 #                  the input DNA fragment
@@ -228,3 +229,29 @@ def find_all_ORFs(dna):
 # if __name__ == "__main__": #Program only runs if it is imported into the command line
 #     import doctest
 #     doctest.testmod()
+=======
+        dna: a DNA sequence represented as a string
+        returns: a string containing the sequence of amino acids encoded by the
+                 the input DNA fragment
+
+        >>> coding_strand_to_AA("ATGCGA")
+        'MR'
+        >>> coding_strand_to_AA("ATGCCCGCTTT")
+        'MPA'
+    """
+    # TODO: implement this
+    pass
+
+def gene_finder(dna):
+    """ Returns the amino acid sequences that are likely coded by the specified dna
+        
+        dna: a DNA sequence
+        returns: a list of all amino acid sequences coded by the sequence dna.
+    """
+    # TODO: implement this
+    pass
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+>>>>>>> daf89177ec30bf2d3eb6f14c538e0a94cf857a77
