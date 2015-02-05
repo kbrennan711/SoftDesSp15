@@ -28,7 +28,7 @@ def get_complement(nucleotide):
     >>> get_complement('C')
     'G'
     >>> get_complement('a') #Test when input is unexpected
-    'X'
+    ' '
     >>> get_complement('T')
     'A'
     >>> get_complement('G')
@@ -43,8 +43,8 @@ def get_complement(nucleotide):
     if nucleotide == "C":
         return "G"
     else:
-        return "X" 
-
+        return " " 
+#swap = {"A":"T", "T":"A", "C":"G", "G":"c"}
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
         sequence
@@ -195,57 +195,74 @@ def find_all_ORFs_both_strands(dna):
     if not len(find_all_ORFs(dna)) == 0: 
         res += find_all_ORFs(dna)
     if not len(find_all_ORFs(get_reverse_complement(dna))) == 0:
-        print 'Entered loop'
-        print get_reverse_complement(dna)
+        #print 'Entered loop'
+        #print get_reverse_complement(dna)
         res += find_all_ORFs(get_reverse_complement(dna))
     return res
-print find_all_ORFs_both_strands("TGACTGTGTTTCTGAACAATAAATGACTTAAACCAGGTATGGCTGCCGATGGTTATCTT")
+#print get_reverse_complement("TGACTGTGTTTCTGAACAATAAATGACTTAAACCAGGTATGGCTGCCAGCATTGGTGTACATCTT")
+#print find_all_ORFs_both_strands("TGACTGTGTTTCTGAACAATAAATGACTTAAACCAGGTATGGCTGCCAGCATTGGTGTACATCTT")
     #Long sequence: "GGGATCGATGCCCCTTAAAGAGTTTACATATTGCTGGAGGCGTTAACCCCGGAT")
-#print find_all_ORFs_both_strands("ATGCGAATGTAGCATCAAA")
 
 def longest_ORF(dna):
     """ Finds the longest ORF on both strands of the specified DNA and returns it
         as a string
         #TEST - what happens when the length of both strands are equal?
+        #Cannot be given an empty string
 
     >>> longest_ORF("ATGCGAATGTAGCATCAAA")
     'ATGCTACATTCGCAT'
-    """
-    print find_all_ORFs_both_strands(dna)
-    #print "Template Strand length", len(find_all_ORFs_both_strands(dna)[0])
-    #print "Complementary Strand length", len(find_all_ORFs_both_strands(dna)[1])
-    if len(find_all_ORFs_both_strands(dna)[0]) > len(find_all_ORFs_both_strands(dna)[1]):
-        return find_all_ORFs_both_strands(dna)[0]
-    if len(find_all_ORFs_both_strands(dna)[0]) < len(find_all_ORFs_both_strands(dna)[1]):
-        return find_all_ORFs_both_strands(dna)[1]
-    else:
-        print 'Same Length'
 
-def longest_ORF_noncoding(dna, num_trials): #
+    Has to determine the longest DNA sequence out of four items in the list.
+    >>> longest_ORF("TGACTGTGTTTCTGAACAATAAATGACTTAAACCAGGTATGGCTGCCAGCATTGGTGTACATCTT")
+    ATGTACACCAATGCTGGCAGCCATACCTGGTTTAAGTCATTTATTGTTCAGAAACACAGTCA
+
+    Returns empty string when no ORFs are present in the DNA sequence
+    >> longest_ORF("GAGAGAGA")
+
+    """
+    if len(find_all_ORFs_both_strands(dna)) == 0:
+        return ""
+    else: 
+        return max(find_all_ORFs_both_strands(dna), key = len)
+
+#print longest_ORF("GAGAGAGA")
+#print longest_ORF("TGACTGTGTTTCTGAACAATAAATGACTTAAACCAGGTATGGCTGCCAGCATTGGTGTACATCTT")
+
+def longest_ORF_noncoding(dna, num_trials): #Question: What is this really supposed to do?
     """ Computes the maximum length of the longest ORF over num_trials shuffles
         of the specfied DNA sequence
         
         dna: a DNA sequence
         num_trials: the number of random shuffles
         returns: the maximum length longest ORF 
-        #Tend to get the length of the strand input
 
     >>> longest_ORF_noncoding('ATGCGAATGTAGCATCA', 10)
     17
+
+    Longest ORF is 0 in non-coding region
+    >>> longest_ORF_noncoding("GAGAGA", 1)
+    0
     """
     # TODO: implement this
-    long_ORFs = []
+    shuffled_ORFs = []
     i = 0
-    x = 0
     while i < num_trials: 
         x = shuffle_string(dna)
-        print x
-        long_ORFs += longest_ORF(x)
+        #print i
+        #print 'Shuffled DNA', x
+        #print 'Longest ORF', longest_ORF(x)
+        shuffled_ORFs.append(longest_ORF(x))
         i += 1
-    return len(max(long_ORFs, key = len))
+    #print "Shuffled DNA list",shuffled_ORFs
+    #print max(shuffled_ORFs, key = len)
+    return len(max(shuffled_ORFs, key = len))
+    #print longest_ORF(shuffled_ORFs)
+    #return len(longest_ORF(shuffled_ORFs))
 
-#print longest_ORF_noncoding('ATGGAGAGAGAGAGAAGAG', 1)
-#print 'DNA input length', len('ATGGAGAGAGAGAGAAGAG')
+#print longest_ORF_noncoding('ATGCGAATGTAGCATCA', 5)
+#print longest_ORF_noncoding("GAGAGAGA", 1)
+#print longest_ORF_noncoding("ATGCGAATGTAGCATCAAA", 1)
+#print 'DNA input length', len('ATGCGAATGTAGCATCA')
 
 def coding_strand_to_AA(dna):
     """ Computes the Protein encoded by a sequence of DNA.  This function
@@ -260,72 +277,102 @@ def coding_strand_to_AA(dna):
         'MetArg'
         >>> coding_strand_to_AA("ATGCCCGCTTT")
         'MetProAla'
+
+        Returns nothing when there is no start codon.
     """
     index = 0
     i = 0
-    start = []
-    res = ['Met']
-    while i < len(dna)/3 - 1:
-        index += 3
-        codon = dna[index:index+3]
-        if codon in ['CGT', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG']:
-            res.append('Arg')
-        if codon in ['GGT', 'GGC', 'GGA', 'GGG']:
-            res.append('Gly')
-        if codon in ['AGT', 'AGC', 'TCT', 'TCC', 'TCA', 'TCG']:
-            res.append('Ser')
-        if codon in ['TGT', 'TGC']:
-            res.append('Cys')
-        if codon in ['TGG']:
-            res.append('Typ') #What do I do here?
-        if codon in ['TAT', 'TAC']:
-            res.append('Tyr')
-        if codon in ['CAT', 'CAC']:
-            res.append('His')
-        if codon in ['CAA', 'CAG']:
-            res.append('Gin')
-        if codon in ['AAT', 'AAC']:
-            res.append('Asn')
-        if codon in ['AAA', 'AAG']:
-            res.append('Lys')
-        if codon in ['GAT', 'GAC']:
-            res.append('Asp')
-        if codon in ['GAA', 'GAG']:
-            res.append('Glu')
-        if codon in ['GCT', 'GCC', 'GCA', 'GCG']:
-            res.append('Ala')
-        if codon in ['ACT', 'ACC', 'ACA', 'ACG']:
-            res.append('Thr')
-        if codon in ['CCT', 'CCC', 'CCA', 'CCG']:
-            res.append('Pro')
-        if codon in ['TTT', 'TTC']:
-            res.append('Phe')
-        if codon in ['TTA', 'TTG', 'CTT', 'CTC', 'CTA', 'CTG']:
-            res.append('Leu')
-        if codon in ['ATT', 'ATC', 'ATA']:
-            res.append('Ile')
-        if codon in ['GTT', 'GTC', 'GTA', 'GTG']:
-            res.append('Val')
-        else:
-            pass
-
-        i += 1
-
+    start = dna[index:index+3]
+    res = []
+    if start == "ATG":
+        res = ['Met']
+        while i < len(dna)/3 - 1:
+            index += 3
+            codon = dna[index:index+3]
+            if codon in ['CGT', 'CGC', 'CGA', 'CGG', 'AGA', 'AGG']:
+                res.append('Arg')
+            if codon in ['GGT', 'GGC', 'GGA', 'GGG']:
+                res.append('Gly')
+            if codon in ['AGT', 'AGC', 'TCT', 'TCC', 'TCA', 'TCG']:
+                res.append('Ser')
+            if codon in ['TGT', 'TGC']:
+                res.append('Cys')
+            if codon in ['TGG']:
+                res.append('Typ') #What do I do here?
+            if codon in ['TAT', 'TAC']:
+                res.append('Tyr')
+            if codon in ['CAT', 'CAC']:
+                res.append('His')
+            if codon in ['CAA', 'CAG']:
+                res.append('Gin')
+            if codon in ['AAT', 'AAC']:
+                res.append('Asn')
+            if codon in ['AAA', 'AAG']:
+                res.append('Lys')
+            if codon in ['GAT', 'GAC']:
+                res.append('Asp')
+            if codon in ['GAA', 'GAG']:
+                res.append('Glu')
+            if codon in ['GCT', 'GCC', 'GCA', 'GCG']:
+                res.append('Ala')
+            if codon in ['ACT', 'ACC', 'ACA', 'ACG']:
+                res.append('Thr')
+            if codon in ['CCT', 'CCC', 'CCA', 'CCG']:
+                res.append('Pro')
+            if codon in ['TTT', 'TTC']:
+                res.append('Phe')
+            if codon in ['TTA', 'TTG', 'CTT', 'CTC', 'CTA', 'CTG']:
+                res.append('Leu')
+            if codon in ['ATT', 'ATC', 'ATA']:
+                res.append('Ile')
+            if codon in ['GTT', 'GTC', 'GTA', 'GTG']:
+                res.append('Val')
+            else:
+                pass
+            i += 1
+    else:
+        pass
     return ''.join(res) #joins the items in the list
 
 # print coding_strand_to_AA('ATGCGA')
 # print len(coding_strand_to_AA("ATGCGA"))/3
+#print coding_strand_to_AA("AGAGAGAGAGAGA")
+#print coding_strand_to_AA("ATGCCCGCTTT")
+#print coding_strand_to_AA("ATGCGA")
 
 def gene_finder(dna):
     """ Returns the amino acid sequences that are likely coded by the specified dna
         
         dna: a DNA sequence
         returns: a list of all amino acid sequences coded by the sequence dna.
+
+        This function takes as input a sequence of DNA.  
+        Use your longest_ORF_noncoding on the input DNA sequence to compute a conservative 
+        threshold for distinguishing between genes and non-genes by running longest_ORF_noncoding 
+        for 1500 trials.  Next, find all open reading frames on both strands, and then return a 
+        list containing the amino acid sequence encoded by any open reading frames that are longer
+        than the  threshold computed using longest_ORF_noncoding. 
     """
     # TODO: implement this
-    pass
+    threshold = longest_ORF_noncoding(dna, 1500) #Should be set to 1500
+    print threshold
+    All_ORFs = find_all_ORFs_both_strands(dna)
+    Filtered_ORFs = []
+    primary_AA = []
+    for i in All_ORFs:
+        if len(i) >= threshold:
+            Filtered_ORFs.append(i)
+        else:
+            pass
+    #print Filtered_ORFs
+    for i in Filtered_ORFs:
+        primary_AA.append(coding_strand_to_AA(i))
+    return primary_AA
 
-if __name__ == "__main__":
-    import doctest
-    doctest.run_docstring_examples(find_all_ORFs_both_strands, globals())
+DNA_sequence = raw_input("What DNA sequence?\n")
+gene_finder("DNA_sequence")
+
+# if __name__ == "__main__":
+#     import doctest
+#     doctest.run_docstring_examples(coding_strand_to_AA, globals())
 #>>>>>>> daf89177ec30bf2d3eb6f14c538e0a94cf857a77
