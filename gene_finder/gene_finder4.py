@@ -211,7 +211,7 @@ def longest_ORF_noncoding(dna, num_trials): #Question: What is this really suppo
         num_trials: the number of random shuffles
         returns: the maximum length longest ORF 
 
-    >>> longest_ORF_noncoding('ATGCGAATGTAGCATCA', 100)
+    >>> longest_ORF_noncoding('ATGCGAATGTAGCATCA', 200)
     17
 
     Longest ORF is 0 in non-coding region
@@ -265,7 +265,7 @@ def gene_finder(dna):
         list containing the amino acid sequence encoded by any open reading frames that are longer
         than the  threshold computed using longest_ORF_noncoding. 
     """
-    threshold = longest_ORF_noncoding(dna, 1500) #Should be set to 1500
+    threshold = longest_ORF_noncoding(dna, 3000) 
     print threshold
     all_ORFs = find_all_ORFs_both_strands(dna)
     filtered_ORFs = []
@@ -277,6 +277,7 @@ def gene_finder(dna):
         primary_AA.append(coding_strand_to_AA(i))
     return primary_AA
 
+# dna = load_seq("./data/mysterySequence.fa")
 dna = load_seq("./data/X73525.fa")
 print gene_finder(dna)
 
