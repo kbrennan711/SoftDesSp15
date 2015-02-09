@@ -177,10 +177,8 @@ def find_all_ORFs_both_strands(dna):
     ['ATGCAT', 'ATGCATGAATGTAG', 'ATGAATGTAG', 'ATG']
     """
     res = []
-    if len(find_all_ORFs(dna)) > 0: 
-        res += find_all_ORFs(dna)
-    if len(find_all_ORFs(get_reverse_complement(dna))) > 0:
-        res += find_all_ORFs(get_reverse_complement(dna))
+    res += find_all_ORFs(dna)
+    res += find_all_ORFs(get_reverse_complement(dna))
     return res
 
 
@@ -277,7 +275,7 @@ def gene_finder(dna):
         primary_AA.append(coding_strand_to_AA(i))
     return primary_AA
 
-# dna = load_seq("./data/mysterySequence.fa")
+
 dna = load_seq("./data/X73525.fa")
 print gene_finder(dna)
 
