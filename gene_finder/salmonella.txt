@@ -1,0 +1,273 @@
+Kelly Brennan
+Software Design Spring 2015 Section 1
+Professor Ben Hill and Paul Ruvolo
+February 9th, 2014
+
+Gene Finder Project:
+Threshold at 783
+1) Primary Amino-Acid Sequence: 'MSLRVRQIDRREWLLAQTATECQRHGREATLEYPTRQGMWVRLSDAEKRWSAWIKPGDWLEHVSPALAGAAVSAGAEHLVVPWLAATERPFELPVPHLSCRRLCVENPVPGSALPEGKLLHIMSDRGGLWFEHLPELPAVGGGRPKMLRWPLRFVIGSSDTQRSLLGRIGIGDVLLIRTSRAEVYCYAKKLGHFNRVEGGIIVETLDIQHIEEENNTTETAETLPGLNQLPVKLEFVLYRKNVTLAELEAMGQQQLLSLPTNAELNVEIMANGVLLGNGELVQMNDTLGVEIHEWLSESGNGE'
+LOCUS       WP_000058734             303 aa            linear   BCT 14-MAY-2013
+DEFINITION  type III secretion system protein SpaO [Salmonella enterica].
+ACCESSION   WP_000058734
+VERSION     WP_000058734.1  GI:445980879
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..303
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         1..303
+                     /product="type III secretion system protein SpaO"
+                     /calculated_mol_wt=33663
+     Region          1..303
+                     /region_name="PRK08158"
+                     /note="type III secretion system protein SpaO; Validated"
+                     /db_xref="CDD:181259"
+     Region          129..295
+                     /region_name="FliN"
+                     /note="Flagellar motor switch/type III secretory pathway
+                     protein [Cell motility and secretion / Intracellular
+                     trafficking and secretion]; COG1886"
+                     /db_xref="CDD:224798"
+ORIGIN      
+        1 mslrvrqidr rewllaqtat ecqrhgreat leyptrqgmw vrlsdaekrw sawikpgdwl
+       61 ehvspalaga avsagaehlv vpwlaaterp felpvphlsc rrlcvenpvp gsalpegkll
+      121 himsdrgglw fehlpelpav gggrpkmlrw plrfvigssd tqrsllgrig igdvllirts
+      181 raevycyakk lghfnrvegg iivetldiqh ieeennttet aetlpglnql pvklefvlyr
+      241 knvtlaelea mgqqqllslp tnaelnveim angvllgnge lvqmndtlgv eihewlsesg
+      301 nge
+//
+This protein is one of the three virulence factors of Salmonella. The type-3 secretion system (T3SS) forms a needle and syringe-like apparatus that is injected into the host cell cytoplasm. This creates membrane pockets which capture and engulf the bacteria into the host cell. 
+
+2) Primary Amino-Acid Sequence:
+MSSNKTEKPTKKRLEDSAKKGQSFKSKDLIIACLTLGGIAYLVSYGSFNEFMGIIKIIIADNFDQSMADYSLAVFGIGLKYLIPFMLLCLVCSALPALLQAGFVLATEALKPNLSALNPVEGAKKLFSMRTVKDTVKTLLYLSSFVVAAIICWKKYKVEIFSQLNGNIVGIAVIWRELLLALVLTCLACALIVLLLDAIAEYFLTMKDMKMDKEEVKREMKEQEGNPEVKSKRREVHMEILSEQVKSDIENSRLIVANPTHITIGIYFKPELMPIPMISVYETNQRALAVRAYAEKVGVPVIVDIKLARSLFKTHRRYDLVSLEEIDEVLRLLVWLEEVENAGKDVIQPQENEVRH
+LOCUS       WP_000097719             356 aa            linear   BCT 14-MAY-2013
+DEFINITION  type III secretion system protein SpaS [Salmonella enterica].
+ACCESSION   WP_000097719
+VERSION     WP_000097719.1  GI:446019864
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..356
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         1..356
+                     /product="type III secretion system protein SpaS"
+                     /calculated_mol_wt=39962
+     Region          2..356
+                     /region_name="PRK08156"
+                     /note="type III secretion system protein SpaS; Validated"
+                     /db_xref="CDD:236168"
+ORIGIN      
+        1 mssnktekpt kkrledsakk gqsfkskdli iacltlggia ylvsygsfne fmgiikiiia
+       61 dnfdqsmady slavfgiglk ylipfmllcl vcsalpallq agfvlateal kpnlsalnpv
+      121 egakklfsmr tvkdtvktll ylssfvvaai icwkkykvei fsqlngnivg iaviwrelll
+      181 alvltclaca livllldaia eyfltmkdmk mdkeevkrem keqegnpevk skrrevhmei
+      241 lseqvksdie nsrlivanpt hitigiyfkp elmpipmisv yetnqralav rayaekvgvp
+      301 vivdiklars lfkthrrydl vsleeidevl rllvwleeve nagkdviqpq enevrh
+//
+Also part of the type III secretion system protein SpaS (Salmonella enterica). Max score: 724; Total score: 724; 100% Query cover. 
+
+3) Primary Amino-Acid Sequence:
+MGIFASAGCGKTMLMHMLIEQTEADVFVIGLIGERGREVTEFVDMLRASHKKEKCVLVFATSDFPSVDRCNAAQLATTVAEYFRDQGKRVVLFIDSMTRYARALRDVALASGERPARRGYPASVFDNLPRLLERPGATSEGSITAFYTVLLESEEEADPMADEIRSILDGHLYLSRKLAGQGHYPAIDVLKSVSRVFGQVTTPTHAEQASAVRKLMTRLEELQLFIDLGEYRPGENIDNDRAMQMRDSLKAWLCQPVAQYSSFDDTLSGMNAFADQN
+Superfamilies: ABC_ATPase superfamily
+Surface presentation of antigens. Max score: 573; Total score: 573; query cover: 100%
+Protein required for the delivery of invasion antigens to the correct subcellular location
+LOCUS       WP_032488261             335 aa            linear   BCT 06-OCT-2014
+DEFINITION  surface presentation of antigens, partial [Salmonella enterica].
+ACCESSION   WP_032488261
+VERSION     WP_032488261.1  GI:694228539
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+            COMPLETENESS: incomplete on the amino end.
+FEATURES             Location/Qualifiers
+     source          1..335
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         <1..335
+                     /product="surface presentation of antigens"
+     Region          23..313
+                     /region_name="ABC_ATPase"
+                     /note="ATP-binding cassette transporter nucleotide-binding
+                     domain; cl21455"
+                     /db_xref="CDD:276299"
+     Region          56..236
+                     /region_name="AAA"
+                     /note="ATPases associated with a variety of cellular
+                     activities; smart00382"
+                     /db_xref="CDD:214640"
+     Site            order(63..64,68..70)
+                     /site_type="other"
+                     /note="Walker A motif"
+                     /db_xref="CDD:238540"
+     Site            order(64,68..70,87,89..90,153..154)
+                     /site_type="other"
+                     /note="ATP binding site [chemical binding]"
+                     /db_xref="CDD:238540"
+     Site            149..153
+                     /site_type="other"
+                     /note="Walker B motif"
+                     /db_xref="CDD:238540"
+ORIGIN      
+        1 dptgkiverf tpevapisee rvidvappsy asrvgvrepl itgvraidgl ltcgvgqrmg
+       61 ifasagcgkt mlmhmlieqt eadvfvigli gergrevtef vdmlrashkk ekcvlvfats
+      121 dfpsvdrcna aqlattvaey frdqgkrvvl fidsmtryar alrdvalasg erparrgypa
+      181 svfdnlprll erpgatsegs itafytvlle seeeadpmad eirsildghl ylsrklagqg
+      241 hypaidvlks vsrvfgqvtt pthaeqasav rklmtrleel qlfidlgeyr pgenidndra
+      301 mqmrdslkaw lcqpvaqyss fddtlsgmna fadqn
+//
+
+ATP synthase SpaL (Salmonella enterica). Max score: 573; Total score: 573; 100 Query cover.
+This is part of the the binding domains that is involved with the invasion and containes ATP binding sites. The SpaL homolog is required for the entry into epithelial cells.
+LOCUS       WP_001674767             407 aa            linear   BCT 11-MAY-2013
+DEFINITION  ATP synthase SpaL [Salmonella enterica].
+ACCESSION   WP_001674767
+VERSION     WP_001674767.1  GI:487406678
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+FEATURES             Location/Qualifiers
+     source          1..407
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         1..407
+                     /product="ATP synthase SpaL"
+                     /calculated_mol_wt=44741
+     Region          1..405
+                     /region_name="PRK08149"
+                     /note="ATP synthase SpaL; Validated"
+                     /db_xref="CDD:236166"
+     Region          63..385
+                     /region_name="ABC_ATPase"
+                     /note="ATP-binding cassette transporter nucleotide-binding
+                     domain; cl21455"
+                     /db_xref="CDD:276299"
+     Site            order(135..136,140..142)
+                     /site_type="other"
+                     /note="Walker A motif"
+                     /db_xref="CDD:238540"
+     Site            order(136,140..142,159,161..162,225..226)
+                     /site_type="other"
+                     /note="ATP binding site [chemical binding]"
+                     /db_xref="CDD:238540"
+     Site            221..225
+                     /site_type="other"
+                     /note="Walker B motif"
+                     /db_xref="CDD:238540"
+ORIGIN      
+        1 mrdvaigelc eirrgwhqkq vvaraqvvgl qrertvlsli gnaqglsrdv vlyptgrals
+       61 awvgysvlga vldptgkive rftpevapis eervidvapp syasrvgvre plitgvraid
+      121 glltcgvgqr mgifasagcg ktmlmhmlie qteadvfvig ligergrevt efvdmlrash
+      181 kkekcvlvfa tsdfpsvdrc naaqlattva eyfrdqgkrv vlfidsmtry aralrdvala
+      241 sgerparrgy pasvfdnlpr llerpgatse gsitafytvl leseeeadpm adeirsildg
+      301 hlylsrklag qghypaidvl ksvsrvfgqv ttpthaeqas avrklmtrle elqlfidlge
+      361 yrpgenidnd ramqmrdslk awlcqpvaqy ssfddtlsgm nafadqn
+//
+
+4) Primary Amino-Acid Sequence: 
+MGDVSAVSSSGNILLPQQDEVGGLSEALKKAVEKHKTEYSGDKKDRDYGDAFVMHKETALPLLLAAWRHGAPAKSEHHNGNVSGLHHNGKSELRIAEKLLKVTAEKSVGLISAEAKVDKSAALLSSKNRPLESVSGKKLSADLKAVESVSEVTDNATGISDDNIKALPGDNKAIAGEGVRKEGAPLARDVAPARMAAANTGKPEDKDHKKVKDVSQLPLQPTTIADLSQLTGGDEKMPLAAQSKPMMTIFPTADGVKGEDSSLTYRFQRWGNDYSVNIQARQAGEFSLIPSNTQVEHRLHDQWQNGNPQRWHLTRDDQQNPQQQQHRQQSGEEDDA
+Super-families: SPAN superfamily
+LOCUS       WP_000503098             336 aa            linear   BCT 15-MAY-2013
+DEFINITION  antigen presentation protein SpaN [Salmonella enterica].
+ACCESSION   WP_000503098
+VERSION     WP_000503098.1  GI:446425243
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..336
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         1..336
+                     /product="antigen presentation protein SpaN"
+                     /calculated_mol_wt=36306
+     Region          1..336
+                     /region_name="SPAN"
+                     /note="Surface presentation of antigens protein; cl19597"
+                     /db_xref="CDD:267950"
+ORIGIN      
+        1 mgdvsavsss gnillpqqde vgglsealkk avekhkteys gdkkdrdygd afvmhketal
+       61 plllaawrhg apaksehhng nvsglhhngk selriaekll kvtaeksvgl isaeakvdks
+      121 aallssknrp lesvsgkkls adlkavesvs evtdnatgis ddnikalpgd nkaiagegvr
+      181 kegaplardv aparmaaant gkpedkdhkk vkdvsqlplq pttiadlsql tggdekmpla
+      241 aqskpmmtif ptadgvkged ssltyrfqrw gndysvniqa rqagefslip sntqvehrlh
+      301 dqwqngnpqr whltrddqqn pqqqqhrqqs geedda
+//
+Antigen presentation protein SpaN (Salmonella enterica). Max score: 687; total score: 687; query cover: 100%
+Associated with type III secretion and virulence. Acts as an invasion protein
+
+5) Primary Amino-Acid Sequence: 
+MFYALYFEIHHLVASAALGFARVAPIFFFLPFLNSGVLSGAPRNAIIILVALGVWPHALNEAPPFLSVAMIPLVLQEAAVGVMLGCLLSWPFWVMHALGCIIDNQRGATLSSSIDPANGIDTSEMANFLNMFAAVVYLQNGGLVTMVDVLNKSYQLCDPMNECTPSLPPLLTFINQVAQNALVLASPVVLVLLLSEVFLGLLSRFAPQMNAFAISLTVKSGIAVLIMLLYFSPVLPDNVLRLSFQATGLSSWFYERGATHVLE
+Specific hits: PRK15332
+Superfamilies: Bac_export_1 superfamily
+LOCUS       WP_000498965             263 aa            linear   BCT 15-MAY-2013
+DEFINITION  type III secretion system protein SpaR [Salmonella enterica].
+ACCESSION   WP_000498965
+VERSION     WP_000498965.1  GI:446421110
+KEYWORDS    RefSeq.
+SOURCE      Salmonella enterica
+  ORGANISM  Salmonella enterica
+            Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+            Enterobacteriaceae; Salmonella.
+COMMENT     REFSEQ: This record represents a single, non-redundant, protein
+            sequence which may be annotated on many different RefSeq genomes
+            from the same, or different, species.
+            COMPLETENESS: full length.
+FEATURES             Location/Qualifiers
+     source          1..263
+                     /organism="Salmonella enterica"
+                     /db_xref="taxon:28901"
+     Protein         1..263
+                     /product="type III secretion system protein SpaR"
+                     /calculated_mol_wt=28356
+     Region          1..263
+                     /region_name="PRK15332"
+                     /note="type III secretion system protein SpaR;
+                     Provisional"
+                     /db_xref="CDD:185232"
+ORIGIN      
+        1 mfyalyfeih hlvasaalgf arvapifffl pflnsgvlsg aprnaiiilv algvwphaln
+       61 eappflsvam iplvlqeaav gvmlgcllsw pfwvmhalgc iidnqrgatl sssidpangi
+      121 dtsemanfln mfaavvylqn gglvtmvdvl nksyqlcdpm nectpslppl ltfinqvaqn
+      181 alvlaspvvl vlllsevflg llsrfapqmn afaisltvks giavlimlly fspvlpdnvl
+      241 rlsfqatgls swfyergath vle
+//
+type III secretion system protein SpaR (Salmonella enterica). Max score: 525; total score: 525; query cover: 100%. 
+Involved in the membrane export of antigens and contributes to the invasive properties of salmonella
+ 
+
+
+
+
+
