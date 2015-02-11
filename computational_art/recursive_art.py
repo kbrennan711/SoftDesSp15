@@ -1,4 +1,7 @@
-""" TODO: Put your header comment here """
+"""Header Comment:
+Combining randomness with structure to produdce compelling images
+
+"""
 
 import random
 from PIL import Image
@@ -33,8 +36,12 @@ def evaluate_random_function(f, x, y):
         >>> evaluate_random_function(["y"],0.1,0.02)
         0.02
     """
-    # TODO: implement this
-    pass
+    if f == ['x']:
+        return x
+    elif f == ['y']:
+        return y
+    else:
+        pass
 
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
@@ -49,7 +56,7 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
                             values for val
         output_interval_start: the start of the interval that contains all
                                possible output values
-        output_inteval_end: the end of the interval that contains all possible
+        output_interval_end: the end of the interval that contains all possible
                             output values
         returns: the value remapped from the input to the output interval
 
@@ -60,8 +67,15 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
         >>> remap_interval(5, 4, 6, 1, 2)
         1.5
     """
-    # TODO: implement this
-    pass
+    # x = (input_interval_start + output_interval_end)/2.0
+    # print x * (output_interval_end - output_interval_start)
+    a = float(input_interval_end - val)
+    b = float(val - input_interval_start)
+    #print 'a =', a, '& b =', b, '& a+b =', a+b
+    c = b/(a+b)
+    #print c
+    return c*(output_interval_end - output_interval_start) + output_interval_start
+#remap_interval(5, 4, 6, 1, 2)
 
 
 def color_map(val):
@@ -117,30 +131,31 @@ def generate_art(filename, x_size=350, y_size=350):
     blue_function = ["x"]
 
     # Create image and loop over all pixels
-    im = Image.new("RGB", (x_size, y_size))
+    im = Image.new("RGB", (x_size, y_size)) #Image size
     pixels = im.load()
-    for i in range(x_size):
-        for j in range(y_size):
+    for i in range(x_size): #Nested loop where pixel value is set
+        for j in range(y_size): #based on evaluating R, G, and B channel functions
             x = remap_interval(i, 0, x_size, -1, 1)
             y = remap_interval(j, 0, y_size, -1, 1)
             pixels[i, j] = (
                     color_map(evaluate_random_function(red_function, x, y)),
                     color_map(evaluate_random_function(green_function, x, y)),
                     color_map(evaluate_random_function(blue_function, x, y))
-                    )
+                    ) #Obtain intensity for each color channel
 
     im.save(filename)
 
 
 if __name__ == '__main__':
     import doctest
+    # doctest.run_docstring_examples(remap_interval, globals())
     doctest.testmod()
 
     # Create some computational art!
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
-    #generate_art("myart.png")
+    # generate_art("myart.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install
-    test_image("noise.png")
+    # test_image("noise.png")
