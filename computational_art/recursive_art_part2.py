@@ -56,13 +56,21 @@ def evaluate_random_function(f, x, y):
         -0.5
         >>> evaluate_random_function(['y'],0.1,0.02)
         0.02
+        >>> evaluate_random_function(['prod', ['x', ['y']], ['prod', ['x'], ['y']]], 1, 1)
+        1.0
+        >>> evaluate_random_function(['avg', ['x'], ['y']], 3, 5)
+        4.0
+        >>> evaluate_random_function(['cos_pi', ['x']], 1, 0)
+        -1.0
+        >>> evaluate_random_function(['sin_pi', ['x']], 1, 0)
+        1.2246467991473532e-16
     """
     if f[0] == 'x': 
         return x
     elif f[0] == 'y':
         return y
     elif f[0] == 'prod':
-        return evaluate_random_function(f[1], x, y)*evaluate_random_function(f[2], x, y)
+        return float(evaluate_random_function(f[1], x, y)*evaluate_random_function(f[2], x, y))
     elif f[0] == 'avg':
         return  0.5*(evaluate_random_function(f[1], x, y)+evaluate_random_function(f[2], x, y))
     elif f[0] == 'cos_pi':
@@ -93,6 +101,8 @@ def remap_interval(val, input_interval_start, input_interval_end, output_interva
         1.0
         >>> remap_interval(5, 4, 6, 1, 2)
         1.5
+        >>> remap_interval(0, -1, 1, 0, 255)
+        127.5
     """
     a = float(input_interval_end - val)
     b = float(val - input_interval_start)
@@ -129,9 +139,9 @@ def generate_art(filename, x_size=350, y_size=350):
         x_size, y_size: optional args to set image dimensions (default: 350)
     """
     # Functions for red, green, and blue channels - where the magic happens!
-    red_function = build_random_function(7,15)
-    green_function = build_random_function(7,15)
-    blue_function = build_random_function(7,15)
+    red_function = build_random_function(7,9)
+    green_function = build_random_function(7,9)
+    blue_function = build_random_function(7,9)
 
     # print red_function
     # print green_function
@@ -162,7 +172,7 @@ if __name__ == '__main__':
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
     #for i in range(15):
-    generate_art("myart_part2_result1.png")
+    generate_art("myart_part2_result2.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install

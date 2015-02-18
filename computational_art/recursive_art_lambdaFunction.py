@@ -37,10 +37,23 @@ def build_random_function(min_depth, max_depth):
         return [f] #Makes it a list instead of a string
     else:
         f = random.choice(func_list)
-    if f in ['prod', 'avg']:
-        return [f, build_random_function(min_depth-1, max_depth-1), build_random_function(min_depth-1, max_depth-1)]
-    else:
-        return [f, build_random_function(min_depth-1, max_depth-1)]
+    if f == 'x':
+        nested_func = lambda x,y: x(x,y)
+    elif f == 'y':
+        nested_func = lambda x,y: y(x,y)
+    elif f == 'prod': 
+        nested_func = (lambda x,y: x)(x,y)*(lambda x,y: y)(x,y)
+    elif f == 'avg':
+        nested_func = (lambda x,y: x)(x,y)+(lambda x,y: y)(x,y) #note have not found the mean... yet
+    elif f == 'cos_pi':
+        nested_func = lambda x,y: cos(pi*x)(x,y)
+    elif f == 'sin_pi':
+        nested_func = lambda x,y: sin(pi*x)(x,y)
+    return [nested_func, build_random_function(min_depth-1, max_depth-1)]
+
+# green = build_random_function(2,3)
+# green_channel_pixel_for_x_y = green(1,1)
+# print build_random_function(2,3)
 
 
 def evaluate_random_function(f, x, y):
@@ -128,10 +141,10 @@ def generate_art(filename, x_size=350, y_size=350):
         filename: string filename for image (should be .png)
         x_size, y_size: optional args to set image dimensions (default: 350)
     """
-    # Functions for red, green, and blue channels - where the magic happens!
-    red_function = build_random_function(7,15)
-    green_function = build_random_function(7,15)
-    blue_function = build_random_function(7,15)
+    # # Functions for red, green, and blue channels - where the magic happens!
+    # red_function = build_random_function(7,15)
+    # green_function = build_random_function(7,15)
+    # blue_function = build_random_function(7,15)
 
     # print red_function
     # print green_function
@@ -162,7 +175,7 @@ if __name__ == '__main__':
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
     #for i in range(15):
-    generate_art("myart_part2_result1.png")
+    # generate_art("myart_part2_lambdaTest.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install
