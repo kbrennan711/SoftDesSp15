@@ -10,7 +10,7 @@ A unique pictures is saved in the current directory each time the code is run.
 """
 
 import random
-from math import sin, cos, pi
+from math import sin, cos, pi, sqrt, tan
 from PIL import Image
 
 
@@ -29,7 +29,7 @@ def build_random_function(min_depth, max_depth):
                  these functions)
     """
     #Scheme for representing function compositions ['elementary function name here', argument 1, argument 2]
-    func_list = ['x', 'y', 'prod', 'avg', 'cos_pi', 'sin_pi']
+    func_list = ['x', 'y', 'prod', 'avg', 'cos_pi', 'sin_pi', 'sqr', 'tan'] #, 'sqrt', 'sqr']
     if min_depth > 0:
         f = random.choice(func_list[2:])
     elif max_depth <= 0:
@@ -77,7 +77,14 @@ def evaluate_random_function(f, x, y):
         return cos(pi*evaluate_random_function(f[1], x, y))
     elif f[0] == 'sin_pi':
         return sin(pi*evaluate_random_function(f[1], x, y))
+    # elif f[0] == 'sqrt':
+    #     return sqrt(evaluate_random_function(f[1], x, y))
+    elif f[0] == 'tan':
+        return tan(evaluate_random_function(f[1], x, y))
+    elif f[0] == 'sqr':
+        return evaluate_random_function(f[1], x, y)**2
 
+#evaluate_random_function(['tan_pi', ['x']], 1, 0)
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
     """ Given an input value in the interval [input_interval_start,
@@ -139,13 +146,9 @@ def generate_art(filename, x_size=350, y_size=350):
         x_size, y_size: optional args to set image dimensions (default: 350)
     """
     # Functions for red, green, and blue channels - where the magic happens!
-    red_function = build_random_function(7,9)
-    green_function = build_random_function(7,9)
-    blue_function = build_random_function(7,9)
-
-    # print red_function
-    # print green_function
-    # print blue_function
+    red_function = build_random_function(7,14)
+    green_function = build_random_function(7,14)
+    blue_function = build_random_function(7,14)
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size)) #Image size
@@ -172,7 +175,7 @@ if __name__ == '__main__':
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
     #for i in range(15):
-    generate_art("myart_part2_result2.png")
+    generate_art("myart_part2_result9.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install

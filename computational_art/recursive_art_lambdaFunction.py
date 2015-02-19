@@ -10,7 +10,7 @@ A unique pictures is saved in the current directory each time the code is run.
 """
 
 import random
-from math import sin, cos, pi
+from math import sin, cos, pi, tan
 from PIL import Image
 
 
@@ -28,60 +28,38 @@ def build_random_function(min_depth, max_depth):
                  (see assignment writeup for details on the representation of
                  these functions)
     """
-    #Scheme for representing function compositions ['elementary function name here', argument 1, argument 2]
-    func_list = ['x', 'y', 'prod', 'avg', 'cos_pi', 'sin_pi']
+    func_list = ['x', 'y', 'prod', 'avg', 'cos_pi', 'sin_pi', 'sqr', 'tan']
     if min_depth > 0:
-        f = random.choice(func_list[2:])
+        function = random.choice(func_list[2:])
     elif max_depth <= 0:
-        f = random.choice(func_list[:2])
-        return [f] #Makes it a list instead of a string
+        function = random.choice(func_list[:2])
     else:
-        f = random.choice(func_list)
-    if f == 'x':
-        nested_func = lambda x,y: x(x,y)
-    elif f == 'y':
-        nested_func = lambda x,y: y(x,y)
-    elif f == 'prod': 
-        nested_func = (lambda x,y: x)(x,y)*(lambda x,y: y)(x,y)
-    elif f == 'avg':
-        nested_func = (lambda x,y: x)(x,y)+(lambda x,y: y)(x,y) #note have not found the mean... yet
-    elif f == 'cos_pi':
-        nested_func = lambda x,y: cos(pi*x)(x,y)
-    elif f == 'sin_pi':
-        nested_func = lambda x,y: sin(pi*x)(x,y)
-    return [nested_func, build_random_function(min_depth-1, max_depth-1)]
-
-# green = build_random_function(2,3)
-# green_channel_pixel_for_x_y = green(1,1)
-# print build_random_function(2,3)
-
-
-def evaluate_random_function(f, x, y):
-    """ Evaluate the random function f with inputs x,y
-        Representation of the function f is defined in the assignment writeup
-
-        f: the function to evaluate
-        x: the value of x to be used to evaluate the function
-        y: the value of y to be used to evaluate the function
-        returns: the function value
-
-        >>> evaluate_random_function(['x'],-0.5, 0.75)
-        -0.5
-        >>> evaluate_random_function(['y'],0.1,0.02)
-        0.02
-    """
-    if f[0] == 'x': 
-        return x
-    elif f[0] == 'y':
-        return y
-    elif f[0] == 'prod':
-        return evaluate_random_function(f[1], x, y)*evaluate_random_function(f[2], x, y)
-    elif f[0] == 'avg':
-        return  0.5*(evaluate_random_function(f[1], x, y)+evaluate_random_function(f[2], x, y))
-    elif f[0] == 'cos_pi':
-        return cos(pi*evaluate_random_function(f[1], x, y))
-    elif f[0] == 'sin_pi':
-        return sin(pi*evaluate_random_function(f[1], x, y))
+        function = random.choice(func_list)
+    if function == 'x':
+        f = lambda x,y: x
+    elif function == 'y':
+        f = lambda x,y: y
+    elif function == 'prod': 
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        nested_func2 = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: nested_func(x,y)*nested_func2(x,y)
+    elif function == 'avg':
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        nested_func2 = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: 0.5*(nested_func(x,y)*nested_func2(x,y))
+    elif function == 'cos_pi':
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: cos(pi*nested_func(x,y))
+    elif function == 'sin_pi':
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: sin(pi*nested_func(x,y))
+    elif function == 'tan':
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: tan(pi*nested_func(x,y))
+    elif function == 'sqr':
+        nested_func = build_random_function(min_depth-1, max_depth-1)
+        f = lambda x,y: nested_func(x,y)**2
+    return f
 
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
@@ -142,13 +120,9 @@ def generate_art(filename, x_size=350, y_size=350):
         x_size, y_size: optional args to set image dimensions (default: 350)
     """
     # # Functions for red, green, and blue channels - where the magic happens!
-    # red_function = build_random_function(7,15)
-    # green_function = build_random_function(7,15)
-    # blue_function = build_random_function(7,15)
-
-    # print red_function
-    # print green_function
-    # print blue_function
+    red_function = build_random_function(7,15)
+    green_function = build_random_function(7,15)
+    blue_function = build_random_function(7,15)
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size)) #Image size
@@ -158,14 +132,13 @@ def generate_art(filename, x_size=350, y_size=350):
             x = remap_interval(i, 0, x_size, -1, 1)
             y = remap_interval(j, 0, y_size, -1, 1)
             pixels[i, j] = (
-                    color_map(evaluate_random_function(red_function, x, y)),
-                    color_map(evaluate_random_function(green_function, x, y)),
-                    color_map(evaluate_random_function(blue_function, x, y))
-                    ) #Obtain intensity for each color channel
-
+                color_map(red_function(x,y)),
+                color_map(green_function(x,y)),
+                color_map(blue_function(x,y))
+                )
     im.save(filename)
 
-
+# # 
 if __name__ == '__main__':
     import doctest
     # doctest.run_docstring_examples(remap_interval, globals())
@@ -175,7 +148,7 @@ if __name__ == '__main__':
     # TODO: Un-comment the generate_art function call after you
     #       implement remap_interval and evaluate_random_function
     #for i in range(15):
-    # generate_art("myart_part2_lambdaTest.png")
+    generate_art("myart_part2_lambdaTest8.png")
 
     # Test that PIL is installed correctly
     # TODO: Comment or remove this function call after testing PIL install
