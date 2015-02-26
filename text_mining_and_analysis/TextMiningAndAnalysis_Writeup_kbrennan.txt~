@@ -1,0 +1,37 @@
+Kelly Brennan
+Software Design Spring 2015 – Section I
+Processor Paul Ruvolo and Ben Hill
+February 26th, 2015
+
+Project Overview:
+	The merit of Shakespearean sonnets lies in the implicit contradictions and uncertainties expressed through complex language that yields multiple interpretations. The expressions of thought and emotion resonate with matters that concern all humans: love, friendship, jealously, hope and despair (Enotes). Sonnets are written in iambic pentameter, have fourteen lines, follow a set rhyme scheme, and have a turn or 'volta' (Poetic Form: Sonnet).  In a Shakepearean sonnet, three quatrains and a couplet follow the rhyming scheme: abab, cdcd, efef, gg, where the concluding couplet swerves in a surprising direction. Since Shakespearean sonnets have many specific, complex linguistic qualities, the limited scope of this project means that the python generated Shakespearean sonnet aims to incorporate a rhyming scheme and with at least two lines using Markov analysis to prove that the generation of a Shakespearean sonnet is possible with a larger scoped project. The python script SonnetGenerator.py outputs the last two lines of a possible Shakespearean sonnet. The code provides the framework for generating a full Shakespearean sonnet with a greater text input and improvements in computational efficiency. 
+
+Implementation: 
+	There are three main sections of the code are text processing, rhyme recognition and dictionary creation and sonnet generation. First, a section of the selected Shakespearean text in the Project Gutenberg library is extracted. In the example code, this one of Shakespeare's sonnet It is important to only run part of the text because the rhyming dictionary generation section has a very long time (more on this below). Each line of the text is used to generate a list containing only the last word of each line, which is lowercase and stripped of all punctuation. This setup allows the these last words to be compared to generate rhyming families. 
+	The second section has two parts, rhyme recognition and rhyming dictionary creation. I used the Natural Learning toolkit for the rhyming recognition part. One function analyzes the words for rhymes and the second function determines whether or not two words rhyme. Based on the rhyming words, a rhyming dictionary is created, where each key contains rhyming families. The disadvantage of this approach is that code running time is very long for it to loop through the 'last_word' list and the dictionary keys. However, the dictionary is easy to read and understand compared to a bunch of nested listed. Each key is a word and the value of each key is the family of words that rhyme with the key, including the key.  This allows the rhyming family (value that contains more than one word that rhyme) to be in one place and easily accessed. 
+	The third section uses the generated rhyming dictionary to compile a couple lines of a sonnet. A random line beginning, which contains everything but the last word, is chosen and is joined with a randomly chosen rhyming word in a randomly chosen key. The code makes sure that the same two lines and rhyming words are not chosen. The last two lines of the sonnet (gg) are then generated. 
+
+Results: 
+
+	The rhyme recognition portion of the code misses many of Shakespeare's rhymes, unfortunately. On one hand, this is surprising because the output of the 'rhyme' function is very long list of words created with a dictionary, so it is hard to imagine that the function would miss a word. But this failure demonstrates the complexity of rhyming, especially for a computer, because there are many different types of rhymes (perfect, general, identical, eye, mind, etc.). The failure to recognize different types of rhymes propagates in to the rhyming dictionary formation, which is critical for sonnet generation. Therefore, the limitation in recognizing rhymes significantly constrains the sonnet generation output and overall success of the code. 
+	I ran the example code for one Shakespearean sonnet from Project Gutenberg, because of the computation and running time issue. Due to the rhyming recognition constraint, only one or two of my keys contained at least one rhyming family. With around rhyming family per sonnet, it is only possible to form two randomly generated rhyming, but this is successful: 
+
+		Calls back the lovely April of her tomb
+		But if thou live, remember'd not to womb
+
+		Look in thy glass and tell the face thou husbandry
+		Now is the time that face should form posterity
+
+		But if thou live, remember'd not to womb
+		Disdains the tillage of thy tomb
+
+The code outputs the lines as items in a list. 
+
+Reflection:
+	Considering that this was my first time designing a software program by figuring-out what to do, as well as build and nest various functions into a functioning program, my project process was somewhat successful. For example, I discovered that I enjoyed working on my project in SLAC because of the abundant help and productive work environment, so I will plan to attend future SLAC events when possible. Additionally, I found that drafting functions diagrams was helpful in structuring my code. Despite this, my project outcome was not ideal. 
+	My project design was probably slightly out of scope for the 'mini-project'. But it successfully establishes the framework to expand and create a sonnet of fourteen lines that follows Shakespeare's rhyming pattern with a higher volume of text input. My sonnet generating program was more complex than I anticipated, as I struggled with computational with efficiency and running time. I definitely could have used more time o figure out ways to improve the program running time. As a result, I am now quite curious about ways to increase computational efficiency. Wih the work that I have put into my project, I believe I have gained good practice with text mining and analysis techniques by accessing and importing outside text, exploring and implementing different python dictionaries (nltk),  formating the text for processing, creating a dictionary of rhyming families, and using the dictionary for the generation of a quasi-sonnet.  
+
+Works Cited:
+http://denny518.blogspot.com/2014/02/writing-sonnets-by-python.html 
+http://www.poets.org/poetsorg/text/poetic-form-sonnet 
+http://www.enotes.com/topics/shakespeare-sonnets 
