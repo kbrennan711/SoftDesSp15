@@ -1,4 +1,6 @@
 """
+Kelly Brennan
+
 Geocoding and Web APIs Project Toolbox exercise
 
 Find the MBTA stops closest to a given location.
@@ -25,8 +27,10 @@ def get_json(url):
     Given a properly formatted URL for a JSON web API request, return
     a Python JSON object containing the response to that request.
     """
-    pass
+    print json "url"
 
+
+get_json(GMAPS_BASE_URL)
 
 def get_lat_long(place_name):
     """
