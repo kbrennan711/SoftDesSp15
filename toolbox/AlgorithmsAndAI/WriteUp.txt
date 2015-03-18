@@ -1,0 +1,19 @@
+Kelly Brennan 
+Software Design - Section 1
+Professors Paul Ruvolo and Ben Hill 
+Spring 2015
+
+Print those scores:
+f_score = Score for each square: F = G + H; value changes to determine final cost (function of g_score and h_score). In the example, Paul must move a minimum of 20 squares. The squares at the end of his journey have a higher score because G + H at that location = 20. For example, in the square right before the cake: G = 19 & H = 1, H + G = 20.
+g_score = the total cost of paul moving from his starting position to a given square. In the example, we see that paul must move at least 18 squares.
+h_score = the number of squares between Paul and the cake at a given location
+
+Paul gets Diagonals: demonstrated in diagonalMovement.png
+
+Paul gets Hops: paulJumps.png
+
+Paul gets swamped: PaulSwamped.png
+
+
+
+

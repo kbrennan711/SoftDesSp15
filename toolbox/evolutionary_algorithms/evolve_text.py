@@ -1,4 +1,6 @@
 """
+Kelly Brennan
+
 Evolutionary algorithm, attempts to evolve a given message string.
 
 Uses the DEAP (Distributed Evolutionary Algorithms in Python) framework,
