@@ -135,15 +135,11 @@ def mutate_text(message, prob_ins=1.0, prob_del=0.0, prob_sub=0.0):
                         (legal) character
     """
     if random.random() < prob_ins:
-        print len(message)
         i = random.randint(0, len(message)-1)
         message.insert(i, random.choice(list(VALID_CHARS)))
-        print len(message)
         return (message, )
     elif random.random() < prob_del:
         i = random.randint(0, len(message)-1)
-        print i
-        print message.pop(i)
         return (message, )
     elif random.random() < prob_sub:
         i = random.randint(0, len(message)-1)
@@ -196,8 +192,7 @@ def evolve_string(text):
 
     # Get configured toolbox and create a population of random Messages
     toolbox = get_toolbox(text)
-    pop = toolbox.population(n=300)
-    print "debug:", type(pop[0].fitness)
+    pop = toolbox.population(n=500)
 
     # Collect statistics as the EA runs
     stats = tools.Statistics(lambda ind: ind.fitness.values)

@@ -1,0 +1,33 @@
+Kelly Brennan
+
+
+Genotype Representation: Why is this implemented with a list of characters instead of a string?
+The text formation is implemented with a list of characters instead of a string to append randomly choosen components of the string to form it and for the mutation function to use list processes to create the mutations.
+
+Format of Statistics:
+Population Size|Final Population Size|Average Fitness value (lower the better)|Standard Deviation|Fitness Minimum|Fitness Maximum|
+
+Changing population size or number or generations to run in evolve_string:
+With 500 Generations (initial) and population size at 300:
+'SJKYNET IS NOWW ONLIN'
+500	187   	2.18   	0.401165	2  	4  
+
+With 700 generations and population size at 300:
+'SKYNET IS NOWW ONLIN'
+700	165   	2.24667	0.453676	2  	5  
+
+With 300 generations and population size at 300:
+'SKYNET IS NWW ONLIN'
+300	175   	2.21667	0.42785 	2  	4  
+
+With 500 generations and population size at 100:
+'SKYNET ISPWXNOJW ONLINV'
+500	60    	4.19 	0.392301	4  	5  
+
+With 500 generations and population size at 500:
+'SKYNET ISV NOW OWNLIN'
+500	283   	2.224 	0.435688	2  	4  
+
+
+
+

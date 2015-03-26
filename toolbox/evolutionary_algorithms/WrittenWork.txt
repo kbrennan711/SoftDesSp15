@@ -1,6 +1,0 @@
-Kelly Brennan
-
-
-Genotype Representation: Why is this implemented with a list of characters instead of a string?
-
-The text formation is implemented with a list of characters instead of a string to append randomly choosen components of the string.
